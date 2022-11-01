@@ -432,6 +432,7 @@ class VESC_USB:
                 
             elif command == COMM_PACKET_ID['COMM_GET_IMU_DATA']:
                 RAD2DEG = 180/np.pi
+                DEG2RAD = np.pi/180
                 can_devs_num = data_frame[ind_f]; ind_f += 1
                 controller_id = data_frame[ind_f]; ind_f += 1
                 # print('imu: ', data_frame)
@@ -457,7 +458,7 @@ class VESC_USB:
                 self.imu_status_data = [[self.values.roll*RAD2DEG, self.values.pitch*RAD2DEG, self.values.yaw*RAD2DEG]]
 
                 # self.imu_status_data = [[self.values.roll, self.values.pitch, self.values.yaw]]
-                self.imu_cmg_data = [[self.values.roll, self.values.gyro_x]]
+                self.imu_cmg_data = [[self.values.roll,  self.values.gyro_x * (-1) * DEG2RAD]]
                 # roll = -atan2f(q0 * q1 + q2 * q3, 0.5 - (q1 * q1 + q2 * q2));
                 # pitch = asinf(-2.0 * (q1 * q3 - q0 * q2));
                 # yaw = -atan2f(q0 * q3 + q1 * q2, 0.5 - (q2 * q2 + q3 * q3));
