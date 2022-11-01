@@ -1,0 +1,8 @@
+<launch>
+
+  
+  <!-- <node name="rviz" pkg="rviz" type="rviz" /> -->
+  <!-- Joystick node -->
+  <node name="joy" pkg="joy" type="joy_node"/>
+
+</launch>
